@@ -1,0 +1,1 @@
+Go to Data.txt and add text a user has written in the past into sentences and summaries and whatever statement they have written, the more the better, this will be used as training data to rephrase any given text to match their style.
