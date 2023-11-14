@@ -1,33 +1,9 @@
-import os
-import platform
+import Helper as H
+
 try:
     from transformers import pipeline
-except ImportError:
-    os.system("pip install transformers")
-    os.system("pip3 install transformers")
-    os.system("pip install pipeline")
-    os.system("pip3 install pipeline")
-
-banner = '''
- ___
-|_ _|_ __ ___  _ __   ___ _ __ __ _ _ __ __ _ _ __ ___  _ __ ___   ___ _ __
- | || '_ ` _ \| '_ \ / _ | '__/ _` | '__/ _` | '_ ` _ \| '_ ` _ \ / _ | '__|
- | || | | | | | |_) |  __| | | (_| | | | (_| | | | | | | | | | | |  __| |
-|___|_| |_| |_| .__/ \___|_|  \__, |_|  \__,_|_| |_| |_|_| |_| |_|\___|_|
-              |_|             |___/
-'''
-
-def banner():
-    print(f"{banner}\n")
-
-def clear():
-    if platform.system() == "Windows":
-        os.system("cls")
-    else:
-        os.system("clear")
-
-clear()
-banner()
+except Exception as e:
+  H.Install()
 
 def paraphrase_text(input_text):
     generator = pipeline(task="text2text-generation", model="t5-small", tokenizer="t5-small")
@@ -35,6 +11,7 @@ def paraphrase_text(input_text):
     return paraphrased_text.strip()
 
 def main():
+    H.Startup()
     file_name = "Data.txt"
     try:
         with open(file_name, 'r') as file:
